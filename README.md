@@ -7,5 +7,7 @@ This is a collection of small Python projects created while practicing programmi
 Lets you pick the number of sides of a die, as well as the number of rolls you want to make. It shows how the mean of the observed rolls approaches the theoretical mean as the number of rolls increases. I also created a plot for a six sided die showing that the observed mean gradually approaches 3.5.
 
 ### 2. Birthday paradox
-Lets you pick the number of people in a group and calculates the probability that at least
-two of them have the same birthday. Interestingly, we find that with only 23 people, this probability is already about 50%, and it increases to roughly 95% with 46 people. To illustrate this rapid increase, I created a plot showing how the probability changes as the number of people grows. The plot also highlights the probabilities of groups of 23 and 46 people.
+Lets you pick the number of people in a group and calculates the probability that at least two of them have the same birthday. Interestingly, we find that with only 23 people, this probability is already about 50%, and it increases to roughly 95% with 46 people. To illustrate this rapid increase, I created a plot showing how the probability changes as the number of people grows. The plot also highlights the probabilities of groups of 23 and 46 people.
+
+### 3. Investment payoff
+Lets you choose the initial value of an investment and calculates the probability that it reaches the target value before falling to zero. During each period, the investment can either gain or lose a fixed amount, based on the chosen probability of gain. I repeated the simulation 10 000 times for different initial amounts, and created a plot showing how the probability of reaching the target value changes as the initial investment increases.
