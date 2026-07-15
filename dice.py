@@ -1,7 +1,8 @@
+import matplotlib.pyplot as plt
+import random
 
 def mean_of_dice_rolls(rolls: int, sides: int):
     # Calculates the mean of an n sided-dice rolled a set amount of times
-    import random
     roll_results = []
     for i in range(rolls):
         roll = random.randint(1, sides)
@@ -9,24 +10,32 @@ def mean_of_dice_rolls(rolls: int, sides: int):
     mean = (sum(roll_results)/rolls)
 
     return mean
-        
-print(mean_of_dice_rolls(rolls = 72, sides = 6))
 
-# create a plot to show the mean of rolling a dice with 6 sides a set amount of times
-import matplotlib.pyplot as plt
-number_rolls = []
-mean_results = []
+# create a plot to show the mean of rolling a dice with n sides a set amount of times
 
-for i in range(1,1000):
-    number_rolls.append(i)
-    mean_results.append(round(mean_of_dice_rolls(i, 6), 2))
+def plot_dice(sides: int):
+    number_rolls = []
+    mean_results = []
+    theoretical_mean = sum(range(sides + 1)) / sides
 
+    for i in range(1,1001):
+        number_rolls.append(i)
+        mean_results.append(mean_of_dice_rolls(i, sides))
 
-plt.plot(number_rolls, mean_results)
-plt.title("Mean of rolling a 6 sided dice")
-plt.xlabel("Number of rolls")
-plt.ylabel("Mean")
-plt.axhline(y=3.5, color="red", linestyle="--") # highlights the theoretical mean
-plt.show()
+    plt.figure()
+    plt.plot(number_rolls, mean_results)
+    plt.title(f"Mean of rolling a {sides} sided dice")
+    plt.xlabel("Number of rolls")
+    plt.ylabel("Mean")
+    plt.axhline(y=theoretical_mean, color="red", linestyle="--") # highlights the theoretical mean
+    figure = plt.gcf()
+    plt.show()
 
+    return figure
+
+# Runs examples above only when this file is run directly
+if __name__ == "__main__":
+    print(mean_of_dice_rolls(rolls = 8, sides =6))
+    print(mean_of_dice_rolls(rolls = 164, sides =6))
+    plot_dice(6)
 
