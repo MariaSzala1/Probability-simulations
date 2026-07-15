@@ -8,9 +8,25 @@ def mean_of_dice_rolls(rolls: int, sides: int):
         roll_results.append(roll)
     mean = (sum(roll_results)/rolls)
 
-    return (f"The mean of rolling a {sides} sided dice {rolls} times is: {mean}")
+    return mean
         
 print(mean_of_dice_rolls(rolls = 72, sides = 6))
 
+# create a plot to show the mean of rolling a dice with 6 sides a set amount of times
+import matplotlib.pyplot as plt
+number_rolls = []
+mean_results = []
+
+for i in range(1,1000):
+    number_rolls.append(i)
+    mean_results.append(round(mean_of_dice_rolls(i, 6), 2))
+
+
+plt.plot(number_rolls, mean_results)
+plt.title("Mean of rolling a 6 sided dice")
+plt.xlabel("Number of rolls")
+plt.ylabel("Mean")
+plt.axhline(y=3.5, color="red", linestyle="--") # highlights the theoretical mean
+plt.show()
 
 
