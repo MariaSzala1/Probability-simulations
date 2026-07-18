@@ -70,6 +70,7 @@ def reliability_test(population: int, prob_disease: float,
 
     return positive_reliability, negative_reliability
 
+# runs the examples below only if the file is run directly
 if __name__ == "__main__":
     print(disease(1000, 0.4))
     print(correctness_test(1000, 0.4, 0.9, 0.95))

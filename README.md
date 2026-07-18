@@ -13,4 +13,4 @@ Lets you pick the number of people in a group and calculates the probability tha
 Lets you choose the initial value of an investment and calculates the probability that it reaches the target value before falling to zero. During each period, the investment can either gain or lose a fixed amount, based on the chosen probability of gain. I repeated the simulation 10 000 times for different initial amounts, and created a plot showing how the probability of reaching the target value changes as the initial investment increases.
 
 ### 4. Medical test simulator
-
+Lets you choose the size of a population, the probability of having the disease, and how often the test correctly identifies sick and healthy people. It simulates the amount of true positives, true negatives, false positives, and false negatives. Based on these results, it calculates how likely someone is to actually be sick after testing positive, and how likely they are to be healthy after testing negative. It shows that the reliability of a test doesn't only depend on how accurate the test is, but also on how common the disease is. 
