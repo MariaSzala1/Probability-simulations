@@ -44,6 +44,23 @@ def correctness_test(population: int, prob_disease: float,
 
     return true_positive, true_negative, false_positive, false_negative
 
+# checks the probabilities of correctly testing positive, and correctly testing negative
+
+def reliability_test(population: int, prob_disease: float, 
+                     correct_positive: float, correct_negative: float):
+    
+    # get the results of the correctness test
+    true_positive, true_negative, false_positive, false_negative = (
+        correctness_test(population, prob_disease, correct_positive, correct_negative))
+    
+    # given that someone tested positive, how likely are they to actually be sick
+    positive_reliability = true_positive / (true_positive + false_positive)
+
+    # given that someone tested negative, how likely are they to actually be healthy
+    negative_reliability = true_negative / (true_negative + false_negative)
+
+    return positive_reliability, negative_reliability
+
 
     
 
