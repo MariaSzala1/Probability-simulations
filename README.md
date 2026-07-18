@@ -11,3 +11,6 @@ Lets you pick the number of people in a group and calculates the probability tha
 
 ### 3. Investment payoff
 Lets you choose the initial value of an investment and calculates the probability that it reaches the target value before falling to zero. During each period, the investment can either gain or lose a fixed amount, based on the chosen probability of gain. I repeated the simulation 10 000 times for different initial amounts, and created a plot showing how the probability of reaching the target value changes as the initial investment increases.
+
+### 4. Medical test simulator
+
