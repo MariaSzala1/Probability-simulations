@@ -8,7 +8,7 @@ def disease(population: int, prob_disease: float):
     
     disease_list = []
 
-    # simulating who was tested positive ad negative for the disease
+    # simulating who is sick and who is healthy
     for i in range(population):
         sick = np.random.binomial(1, prob_disease)
         disease_list.append(sick)
@@ -21,12 +21,9 @@ def disease(population: int, prob_disease: float):
         if i == 1:
             result_sick += 1
 
-        if i == 0:
-            result_healthy += 1
-
     return result_sick
     
-# checks whether the test result was correct
+# simulates the true and false positive and negative results
 def correctness_test(population: int, prob_disease: float, 
                      correct_positive: float, correct_negative: float):
     
@@ -44,8 +41,7 @@ def correctness_test(population: int, prob_disease: float,
 
     return true_positive, true_negative, false_positive, false_negative
 
-# checks the probabilities of correctly testing positive, and correctly testing negative
-
+# calculates how reliable positive and negative results are
 def reliability_test(population: int, prob_disease: float, 
                      correct_positive: float, correct_negative: float):
     
@@ -53,13 +49,32 @@ def reliability_test(population: int, prob_disease: float,
     true_positive, true_negative, false_positive, false_negative = (
         correctness_test(population, prob_disease, correct_positive, correct_negative))
     
+    total_positive = true_positive + false_positive
+    total_negative = true_negative + true_negative
+    
     # given that someone tested positive, how likely are they to actually be sick
-    positive_reliability = true_positive / (true_positive + false_positive)
+
+    if total_positive == 0: # handling the case when there are no sick people
+        positive_reliability = None
+
+    else:
+        positive_reliability = round(true_positive / total_positive, 2)
 
     # given that someone tested negative, how likely are they to actually be healthy
-    negative_reliability = true_negative / (true_negative + false_negative)
+
+    if total_negative == 0: # handling the case when no one is healthy
+        negative_reliability = None
+
+    else:
+        negative_reliability = round(true_negative / total_negative, 2)
 
     return positive_reliability, negative_reliability
+
+if __name__ == "__main__":
+    print(disease(1000, 0.4))
+    print(correctness_test(1000, 0.4, 0.9, 0.95))
+    print(reliability_test(1000, 0.4, 0.9, 0.95))
+
 
 
     
