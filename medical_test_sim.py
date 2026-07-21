@@ -1,6 +1,7 @@
 # In this project I will make a function that will check how reliable
 # a positive medical test result is
 import numpy as np
+import matplotlib.pyplot as plt
 
 # calculates the amount of people that have a disease in a population
 # (where people that don't have it is healthy = population - sick)
@@ -50,7 +51,7 @@ def reliability_test(population: int, prob_disease: float,
         correctness_test(population, prob_disease, correct_positive, correct_negative))
     
     total_positive = true_positive + false_positive
-    total_negative = true_negative + true_negative
+    total_negative = true_negative + false_negative
     
     # given that someone tested positive, how likely are they to actually be sick
 
@@ -70,13 +71,40 @@ def reliability_test(population: int, prob_disease: float,
 
     return positive_reliability, negative_reliability
 
+# creates a plot that compares the test reliability with the disease probability
+def plot(population: int, correct_positive: float, correct_negative: float):
+    # we'd like to make this plot for many disease probabilities,
+    # here I'm going to take ones from 0.05 to 0.6
+    dis_probabilities = np.linspace(0.05, 0.6, 55)
+
+    positive_reliabilities = []
+    negative_reliabilities = []
+    
+    for i in dis_probabilities:
+        positive_reliability, negative_reliability  = reliability_test(population, i, correct_positive, correct_negative)
+        positive_reliabilities.append(positive_reliability)
+        negative_reliabilities.append(negative_reliability)
+
+    # Create separate plots for positive and negative probabilities
+    plt.figure()
+    plt.plot(dis_probabilities, positive_reliabilities, label = "Reliability of a positive test")
+    plt.plot(dis_probabilities, negative_reliabilities, label = "Reliability of a negative test", color = "red")
+    plt.title("Test reliability for different disease probabilities")
+    plt.xlabel("Disease probabilities")
+    plt.ylabel("Test reliability")
+    figure = plt.gcf()
+    plt.legend()
+    plt.show()
+
+    return figure
+
+
 # runs the examples below only if the file is run directly
 if __name__ == "__main__":
     print(disease(1000, 0.4))
     print(correctness_test(1000, 0.4, 0.9, 0.95))
     print(reliability_test(1000, 0.4, 0.9, 0.95))
-
-
+    plot(1000, 0.9, 0.95)
 
     
 
